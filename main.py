@@ -46,7 +46,9 @@ async def process_name(message: types.Message, state: FSMContext):
 async def process_race_type(message: types.Message, state: FSMContext):
     async with state.proxy() as data:
         data['race_type'] = message.text
-
+        document = Document('marathon_records.docx')
+        document.add_paragraph(name + ' - ' + race_type)
+        document.save('marathon_records.docx')
         text = f"Ты записался на {data['race_type']}! Удачи на марафоне, {data['name']}!"
         await bot.send_message(message.chat.id, text, parse_mode=ParseMode.HTML)
 
