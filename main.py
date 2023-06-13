@@ -1,27 +1,3 @@
-import logging
-import asyncio
-from docx import Document
-from docx.shared import Inches
-from aiogram import Bot, Dispatcher, types
-from aiogram.contrib.fsm_storage.memory import MemoryStorage
-from aiogram.dispatcher import FSMContext
-from aiogram.dispatcher.filters import Text
-from aiogram.dispatcher.filters.state import State, StatesGroup
-from aiogram.types import ParseMode
-from aiogram.utils import executor
-
-bot = Bot(token="6153863747:AAG8MOepJUDOs2p-lTRjhDUtv2KxYnMJzEQ")
-storage = MemoryStorage()
-dp = Dispatcher(bot, storage=storage)
-
-logging.basicConfig(level=logging.INFO)
-
-
-class Form(StatesGroup):
-    name = State()
-    race_type = State()
-
-
 @dp.message_handler(commands=['start'])
 async def start(message: types.Message):
     await message.reply("Здравствуй! Я бот для записи на марафон. Напиши свое ФИО.")
